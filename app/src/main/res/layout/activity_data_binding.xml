@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--java.lang.* 包中的类会被自动导入，所以可以直接使用-->
+    <data>
+        <!--alias可以指定别名-->
+        <import
+            alias="UserTest"
+            type="com.holiday.jetpackstudy.model.User" />
+
+        <import type="com.holiday.jetpackstudy.model.Goods" />
+
+        <import type="com.holiday.jetpackstudy.databinding.DataBindingActivity.Handler" />
+
+        <import type="com.holiday.jetpackstudy.model.ObservableGoods" />
+
+        <import type="androidx.databinding.ObservableList" />
+
+        <variable
+            name="user"
+            type="UserTest" />
+
+        <variable
+            name="handler"
+            type="Handler" />
+
+        <variable
+            name="goods"
+            type="Goods" />
+
+        <variable
+            name="observableGoods"
+            type="ObservableGoods" />
+
+        <variable
+            name="observableList"
+            type="ObservableList&lt;String&gt;" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            tools:context=".databinding.DataBindingActivity">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.name,default=text}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.password}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{goods.name}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_goods_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{goods.details}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(goods.price)}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->handler.changePart()}"
+                android:text="改变部分属性" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->handler.changeAll()}"
+                android:text="改变全部属性" />
+
+            <TextView
+                android:id="@+id/tv_observable_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{observableGoods.name}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->handler.changeObservable()}"
+                android:text="改变可观察域" />
+
+            <TextView
+                android:id="@+id/tv_observable_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{observableList[0],default=123}"
+                android:textSize="@dimen/tv_text_size" />
+
+            <EditText
+                android:id="@+id/edt_observable_goods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{handler.afterTextChanged}"
+                android:text="@={observableGoods.name}"
+                android:textSize="@{@dimen/tv_text_size}" />
+
+            <com.holiday.jetpackstudy.view.NetImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                bind:url="@{imgUrl}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->handler.gotoRecyclerView()}"
+                android:text="RecyclerView"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

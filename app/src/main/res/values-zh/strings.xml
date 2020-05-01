@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jetpack学习</string>
+    <string name="title_activity_navigation">导航标题</string>
+    <string name="title_dashboard">面板</string>
+    <string name="title_home">首页</string>
+    <string name="title_notifications">通知</string>
+</resources>
