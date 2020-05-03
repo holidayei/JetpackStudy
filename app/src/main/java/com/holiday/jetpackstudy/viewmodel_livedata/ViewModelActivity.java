@@ -12,7 +12,8 @@ import com.holiday.jetpackstudy.databinding.ActivityViewModelBinding;
 import com.holiday.jetpackstudy.utils.QrLog;
 
 /**
- * 原理：https://juejin.im/post/5c047fd3e51d45666017ff86
+ * LiveData原理：https://juejin.im/post/5c25753af265da61561f5335
+ * ViewModel原理：https://juejin.im/post/5c047fd3e51d45666017ff86
  * <p>
  * ViewModel只负责业务不关注UI，生命长于宿主，宿主销毁自己也会自动销毁并回调onCleared。
  * fragment与act通信，可以让多个fragment共享act的vm，数据共享。
@@ -33,15 +34,15 @@ public class ViewModelActivity extends BaseActivity {
         mBinding.tvText.setText(commonViewModel.text);
 
         //旋转屏幕重建act后，vm还是同一个实例
-        QrLog.e(String.valueOf(commonViewModel.hashCode()));
+//        QrLog.e(String.valueOf(commonViewModel.hashCode()));
 
         mLiveData.observe(this, s -> {
             //只有处于活跃状态：onStart、onResume、onPause才会收到回调
-            QrLog.e("observe = " + s + "," + getLifecycle().getCurrentState());
+            QrLog.e("----------------- observe = " + s + "," + getLifecycle().getCurrentState());
         });
-        //观察所有生命周期
+        //观察所有生命周期，需要手动removeObserver
         mLiveData.observeForever(s -> {
-            QrLog.e("observeForever = " + s + "," + getLifecycle().getCurrentState());
+//            QrLog.e("----------------- observeForever = " + s + "," + getLifecycle().getCurrentState());
         });
         mLiveData.setValue("onCreate");
     }

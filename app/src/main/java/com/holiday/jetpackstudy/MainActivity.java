@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import com.holiday.jetpackstudy.databinding.ActivityMainBinding;
 import com.holiday.jetpackstudy.databinding.DataBindingActivity;
 import com.holiday.jetpackstudy.lifecycle.LifecycleActivity;
+import com.holiday.jetpackstudy.model.User;
 import com.holiday.jetpackstudy.navigation.NavigationActivity;
 import com.holiday.jetpackstudy.paging.PagingActivity;
 import com.holiday.jetpackstudy.room.RoomActivity;
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.tvName.setTextColor(0xff666666);
+        binding.setUser(new User("用户名", "用户密码"));
     }
 
     public void gotoDataBinding(View view) {

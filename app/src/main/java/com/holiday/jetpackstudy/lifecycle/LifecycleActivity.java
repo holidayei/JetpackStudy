@@ -14,7 +14,7 @@ import com.holiday.jetpackstudy.R;
  * LiveData 与 ViewModel 的 lifecycle 也依赖于 Lifecycle 框架。
  * 创建过程，act优先于观察者；销毁过程，观察者优先于act，毕竟要等观察者处理完了如释放资源，act才能销毁。
  * 优点：解耦，避免act臃肿；由于解耦，实现了模块化和可移植。
- * 缺点：暂无。
+ * 缺点：观察者操作比较耗时的话，会阻塞住其他观察者甚至生命周期。
  */
 public class LifecycleActivity extends AppCompatActivity {
     private static final String TAG = "Lifecycle";
