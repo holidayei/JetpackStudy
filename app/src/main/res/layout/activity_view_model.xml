@@ -4,6 +4,11 @@
 
     <data>
 
+        <import type="com.holiday.jetpackstudy.viewmodel_livedata.CommonViewModel" />
+
+        <variable
+            name="commonViewModel"
+            type="CommonViewModel" />
     </data>
 
     <LinearLayout
@@ -16,6 +21,13 @@
             android:id="@+id/tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{commonViewModel.text}"
             android:textSize="@dimen/tv_text_size" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeData"
+            android:text="修改数据" />
     </LinearLayout>
 </layout>
