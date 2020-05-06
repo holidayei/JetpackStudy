@@ -25,12 +25,14 @@ import com.holiday.jetpackstudy.navigation.ui.notifications.NotificationsFragmen
 // TODO: 2020-04-29 fragment反复创建问题
 // TODO: 2020-04-29 封装一套json配置页面的接入方案
 public class NavigationActivity extends AppCompatActivity {
+    BottomNavigationView navView;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -44,7 +46,7 @@ public class NavigationActivity extends AppCompatActivity {
         //获取页面容器NavHostFragment
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         //获取导航控制器
-        NavController navController = NavHostFragment.findNavController(fragment);
+        navController = NavHostFragment.findNavController(fragment);
         //创建自定义的Fragment导航器
         FixFragmentNavigator fragmentNavigator =
                 new FixFragmentNavigator(this, fragment.getChildFragmentManager(), fragment.getId());
@@ -90,5 +92,22 @@ public class NavigationActivity extends AppCompatActivity {
         navGraph.setStartDestination(R.id.navigation_home);
 
         return navGraph;
+    }
+
+    /**
+     * 重写返回键事件
+     * fix: ComponentActivity.onBackPressed -> ... -> NavController.popBackStack()
+     * 自定义导航器后，会引起NavController管理的回退栈出问题
+     */
+    @Override
+    public void onBackPressed() {
+        int currentId = navController.getCurrentDestination().getId();
+        int startId = navController.getGraph().getStartDestination();
+        //如果当前目的地不是HomeFragment，则先回到HomeFragment
+        if (currentId != startId) {
+            navView.setSelectedItemId(startId);
+        } else {
+            finish();
+        }
     }
 }
