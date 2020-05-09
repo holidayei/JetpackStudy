@@ -15,17 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".room.RoomActivity">
-
-        </activity>
-        <activity android:name=".paging.PagingActivity">
-
-        </activity>
+        <activity android:name=".paging.network.PagingNetworkActivity"></activity>
+        <activity android:name=".paging.network.PagingNetworkActivity2"></activity>
+        <activity android:name=".room.RoomActivity"></activity>
+        <activity android:name=".paging.PagingActivity"></activity>
         <activity
             android:name=".navigation.NavigationActivity"
-            android:label="@string/title_activity_navigation">
-
-        </activity>
+            android:label="@string/title_activity_navigation"></activity>
         <activity android:name=".workmanager.WorkManagerActivity" />
         <activity android:name=".viewmodel_livedata.ViewModelActivity" />
         <activity android:name=".databinding.DbRecyclerViewActivity" />

@@ -11,6 +11,6 @@ public class DataUtil {
 //        return imgs[idx % imgs.length];
 
         //from https://picsum.photos/
-        return "https://i.picsum.photos/id/" + idx + "/200/200.jpg";
+        return "https://i.picsum.photos/id/" + (idx % 100) + "/200/200.jpg";
     }
 }

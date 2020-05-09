@@ -1,5 +1,6 @@
 package com.holiday.jetpackstudy.paging;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.holiday.jetpackstudy.MyApp;
 import com.holiday.jetpackstudy.R;
 import com.holiday.jetpackstudy.databinding.ActivityPagingBinding;
+import com.holiday.jetpackstudy.paging.network.PagingNetworkActivity;
+import com.holiday.jetpackstudy.paging.network.PagingNetworkActivity2;
 import com.holiday.jetpackstudy.room.dao.UserDao;
 import com.holiday.jetpackstudy.room.entity.User;
 import com.holiday.jetpackstudy.utils.QrLog;
@@ -68,6 +71,16 @@ public class PagingActivity extends AppCompatActivity {
         public void deleteUsers() {
             List<User> users = mUserDao.queryUsers();
             mUserDao.deleteUsers(users.get(users.size() - 1));
+        }
+
+        public void networkDemo() {
+            Intent intent = new Intent(PagingActivity.this, PagingNetworkActivity.class);
+            startActivity(intent);
+        }
+
+        public void networkDemo2() {
+            Intent intent = new Intent(PagingActivity.this, PagingNetworkActivity2.class);
+            startActivity(intent);
         }
     }
 }

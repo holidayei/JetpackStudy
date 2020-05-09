@@ -53,6 +53,20 @@
                     android:onClick="@{()->handler.deleteUsers()}"
                     android:text="deleteUsers"
                     android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->handler.networkDemo()}"
+                    android:text="networkDemo"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->handler.networkDemo2()}"
+                    android:text="networkDemo2"
+                    android:textAllCaps="false" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
