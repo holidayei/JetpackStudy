@@ -34,15 +34,17 @@ public class WorkManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_manager);
 
+        //创建要传递的参数，最大10KB
         Data inputData = new Data.Builder().putString("input_data", "输入数据").build();
 
-        //约束条件
+        //创建约束条件
         Constraints constraints = new Constraints.Builder()
                 .setRequiresCharging(true) //充电状态
                 .setRequiredNetworkType(NetworkType.CONNECTED)  //网络连接
                 .setRequiresBatteryNotLow(true)  //非低电量
                 .build();
 
+        //创建请求
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .setConstraints(constraints)
                 .setInitialDelay(2, TimeUnit.SECONDS)
@@ -50,6 +52,7 @@ public class WorkManagerActivity extends AppCompatActivity {
                 .setInputData(inputData)
                 //setBackoffCriteria 回退策略
                 .build();
+        //还有周期性请求PeriodicWorkRequest，需要注意的是内部限制了最小周期为15分钟
 
         OneTimeWorkRequest workRequest2 = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .setConstraints(constraints)
@@ -66,7 +69,7 @@ public class WorkManagerActivity extends AppCompatActivity {
         //任务链，先后关系
         WorkManager.getInstance(this).beginWith(workRequest2).then(workRequest).enqueue();
 
-        //可以监听工作状态
+        //可以监听任务的工作状态
         LiveData<List<WorkInfo>> liveData = WorkManager.getInstance(this).getWorkInfosByTagLiveData("MyWorker");
         liveData.observe(this, new Observer<List<WorkInfo>>() {
             @Override

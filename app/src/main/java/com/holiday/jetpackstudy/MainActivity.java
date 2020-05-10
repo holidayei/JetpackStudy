@@ -22,6 +22,7 @@ import com.holiday.jetpackstudy.workmanager.WorkManagerActivity;
  * <p>
  * google官网：https://developer.android.google.cn/jetpack
  * B站：https://www.bilibili.com/video/BV1w4411t7UQ
+ * B站：https://space.bilibili.com/64169458/channel/detail?cid=58384
  */
 public class MainActivity extends AppCompatActivity {
 

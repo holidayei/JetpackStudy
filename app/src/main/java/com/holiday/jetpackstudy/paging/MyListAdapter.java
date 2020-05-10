@@ -85,6 +85,8 @@ public class MyListAdapter extends PagedListAdapter<User, MyListAdapter.UserAdap
     }
 
     //以下方法用于log
+
+    //这个方法由submitList触发
     @Override
     public void onCurrentListChanged(@Nullable PagedList<User> previousList, @Nullable PagedList<User> currentList) {
         super.onCurrentListChanged(previousList, currentList);

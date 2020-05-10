@@ -18,6 +18,12 @@ import com.holiday.jetpackstudy.utils.QrLog;
 /**
  * LiveData原理：https://juejin.im/post/5c25753af265da61561f5335
  * ViewModel原理：https://juejin.im/post/5c047fd3e51d45666017ff86
+ * 美团技术团队：https://tech.meituan.com/2018/07/26/android-livedatabus.html
+ * Android Architecture Components的特点
+ * 数据驱动型编程 变化的永远是数据，界面无需更改。
+ * 感知生命周期，防止内存泄漏。
+ * 高度解耦 数据，界面高度分离。
+ * 数据持久化 数据、ViewModel不与UI的生命周期挂钩，不会因为界面的重建而销毁。
  * <p>
  * ViewModel只负责业务不关注UI，生命长于宿主，宿主销毁自己也会自动销毁并回调onCleared。
  * fragment与act通信，可以让多个fragment共享act的vm，数据共享。
