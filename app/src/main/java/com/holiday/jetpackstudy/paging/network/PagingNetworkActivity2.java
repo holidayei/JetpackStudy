@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.holiday.jetpackstudy.R;
 import com.holiday.jetpackstudy.databinding.ActivityPagingNetworkBinding;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 /**
@@ -30,7 +31,24 @@ public class PagingNetworkActivity2 extends AppCompatActivity {
         mViewModel = ViewModelProviders.of(this).get(PagingNetworkViewModel2.class);
 
         //关闭加载更多，使用paging的预加载即可
-        mBinding.refreshArticle.setEnableLoadMore(false);
+//        mBinding.refreshArticle.setEnableLoadMore(false);
+        //fix:关闭网络或某次预加载失败，导致恢复网络后也无法进行预加载了，所以还需开启加载更多
+        mBinding.refreshArticle.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                mViewModel.loadMore();
+            }
+        });
+        //观察到加载更多完成后，需要隐藏UI
+        mViewModel.getFinishLoadMore().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean finish) {
+                if (finish) {
+                    mBinding.refreshArticle.finishLoadMore();
+                }
+            }
+        });
+
         mBinding.refreshArticle.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {

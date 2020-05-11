@@ -44,14 +44,14 @@ public class MyListAdapter extends PagedListAdapter<User, MyListAdapter.UserAdap
     @NonNull
     @Override
     public UserAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        QrLog.e("onCreateViewHolder");
+//        QrLog.e("onCreateViewHolder");
         RvItemPagingBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.rv_item_paging, parent, false);
         return new UserAdapterHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapterHolder holder, int position) {
-        QrLog.e("onBindViewHolder = " + position);
+//        QrLog.e("onBindViewHolder = " + position);
         final User user = getItem(position);
         holder.getBinding().setUser(user);
         holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {
